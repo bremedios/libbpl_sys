@@ -6,3 +6,6 @@ CMakeCache.txt
 *.so
 Makefile
 install_manifest.txt
+.cmake
+Testing
+build.ninja
