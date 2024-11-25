@@ -5,7 +5,7 @@
 #include <filesystem>
 #include <ranges>
 
-#include "Batteries.h"
+#include "sys/Batteries.h"
 
 namespace sysapi {
     Batteries::Batteries() = default;

@@ -6,7 +6,7 @@
 #include <filesystem>
 #include <iostream>
 
-#include "Battery.h"
+#include "sys/Battery.h"
 
 namespace sysapi {
 
