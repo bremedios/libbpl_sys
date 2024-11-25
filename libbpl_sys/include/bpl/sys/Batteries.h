@@ -2,14 +2,14 @@
 // Created by Bradley Remedios on 11/18/24.
 //
 
-#ifndef SYSAPI_BATTERIES_H
-#define SYSAPI_BATTERIES_H
+#ifndef BPL_SYS_BATTERIES_H
+#define BPL_SYS_BATTERIES_H
 
 #include <map>
 
-#include "Battery.h"
+#include <bpl/sys/Battery.h>
 
-namespace sysapi {
+namespace bpl::sys {
 
     class Batteries {
     public:
@@ -26,6 +26,6 @@ namespace sysapi {
         BatteryMap m_batteries;
     };
 
-} // sysapi
+} // bpl::sys
 
-#endif //SYSAPI_BATTERIES_H
+#endif // BPL_SYS_BATTERIES_H

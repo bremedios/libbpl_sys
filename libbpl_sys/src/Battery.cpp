@@ -6,9 +6,9 @@
 #include <filesystem>
 #include <iostream>
 
-#include "sys/Battery.h"
+#include <bpl/sys/Battery.h>
 
-namespace sysapi {
+namespace bpl::sys {
 
     Battery::Battery(const std::string &name) {
         m_capacityFiles.emplace_back("capacity");
@@ -53,4 +53,4 @@ namespace sysapi {
     int Battery::getCapacity() const {
         return m_capacity;
     } // getCapacity
-} // sysapi
+} // bpl::sys

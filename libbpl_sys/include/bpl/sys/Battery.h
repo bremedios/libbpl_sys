@@ -2,15 +2,15 @@
 // Created by Bradley Remedios on 11/18/24.
 //
 
-#ifndef SYSAPI_BATTERY_H
-#define SYSAPI_BATTERY_H
+#ifndef BPL_SYS_BATTERY_H
+#define BPL_SYS_BATTERY_H
 
 #include <map>
 #include <list>
 #include <memory>
 #include <string>
 
-namespace sysapi {
+namespace bpl::sys {
     class Battery {
     public:
         explicit Battery(const std::string& name);
@@ -31,6 +31,6 @@ namespace sysapi {
 
     typedef std::shared_ptr<Battery> BatteryPtr;
     typedef std::map<std::string, BatteryPtr> BatteryMap;
-} // sysapi
+} // bpl::sys
 
-#endif // SYSAPI_BATTERY_H
+#endif // BPL_SYS_BATTERY_H

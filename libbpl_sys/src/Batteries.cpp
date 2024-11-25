@@ -5,9 +5,9 @@
 #include <filesystem>
 #include <ranges>
 
-#include "sys/Batteries.h"
+#include <bpl/sys/Batteries.h>
 
-namespace sysapi {
+namespace bpl::sys {
     Batteries::Batteries() = default;
 
     Batteries::~Batteries() {
@@ -42,4 +42,4 @@ namespace sysapi {
         }
 
     } // Update
-} // sysapi
+} // bpl::sys

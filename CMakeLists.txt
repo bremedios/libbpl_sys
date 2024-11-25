@@ -4,4 +4,4 @@ project(sysproj)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(libsys)
+add_subdirectory(libbpl_sys)
