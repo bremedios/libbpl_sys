@@ -42,4 +42,34 @@ namespace bpl::sys {
         }
 
     } // Update
+
+    bool Batteries::StartLog(const std::string &logFile) {
+        bool result = true;
+
+        for (auto & battery : std::views::values(m_batteries)) {
+            result &= battery->StartLog(logFile);
+        }
+
+        return result;
+    } // StartLog
+
+    bool Batteries::StopLog() {
+        bool result = true;
+
+        for (auto & battery : std::views::values(m_batteries)) {
+            result &= battery->StopLog();
+        }
+
+        return result;
+    } // StopLog
+
+    bool Batteries::Log(const std::string& timestamp) {
+        bool result = true;
+
+        for (auto & battery : std::views::values(m_batteries)) {
+            result &= battery->Log(timestamp);
+        }
+
+        return result;
+    } // Log
 } // bpl::sys

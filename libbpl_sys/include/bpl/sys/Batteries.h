@@ -22,6 +22,11 @@ namespace bpl::sys {
         [[nodiscard]] const BatteryMap& getBatteryMap() const;
 
         void Update();
+
+        bool StartLog(const std::string &logFile);
+        bool StopLog();
+        bool Log(const std::string& timestamp);
+
     private:
         BatteryMap m_batteries;
     };
