@@ -11,7 +11,7 @@ namespace bpl::sys {
 
     class Tick {
     public:
-        Tick(std::chrono::milliseconds period);
+        explicit Tick(std::chrono::milliseconds period);
         ~Tick() = default;
 
         void Wait(std::chrono::milliseconds maxWait);
@@ -24,7 +24,7 @@ namespace bpl::sys {
         void setPeriod(std::chrono::milliseconds period) { m_period = period; }
     private:
         std::chrono::time_point<std::chrono::steady_clock> m_tick;
-        std::chrono::milliseconds                          m_period;
+        std::chrono::milliseconds                          m_period = std::chrono::milliseconds(1000);
     }; // class Tick
 }; // namespace bpl::sys
 #endif //BPL_SYS_TICK_H
