@@ -11,6 +11,7 @@ namespace bpl::sys {
     class Path {
     public:
         static std::string getCwd();
+        static std::string getResourceFilename(std::string file);
     }; // class Path
 } // bpl::sys
 

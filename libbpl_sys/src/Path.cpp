@@ -5,7 +5,10 @@
 #include <cstring>
 #include <iostream>
 #include <ostream>
+#include <list>
+#include <filesystem>
 
+#include <bits/fs_fwd.h>
 #include <unistd.h>
 
 #include <bpl/sys/Path.h>
@@ -28,5 +31,26 @@ namespace bpl::sys {
         free(cwd);
 
         return current_directory;
-    } // GetCwd
+    } // getCwd
+
+    std::string Path::getResourceFilename(std::string file) {
+        std::list<std::filesystem::path> paths;
+
+        paths.emplace_back(file);
+        paths.emplace_back("/usr/local/share/"+file);
+        paths.emplace_back("/usr/local/share/games/"+file);
+
+        //  Check if its in our current working directory
+        //if (std::filesystem::exists(std::filesystem::exists({file}))) {
+        //    return file;
+        //}
+
+        for (auto& it : paths) {
+            if (std::filesystem::exists(it)) {
+                return it.string();
+            }
+        }
+
+        return "";
+    } // getResourceFilename
 } // bpl::sys
