@@ -13,6 +13,8 @@
 
 #include <bpl/sys/Path.h>
 
+#include "Debug.h"
+
 namespace bpl::sys {
     std::string Path::getCwd() {
         //
@@ -21,7 +23,7 @@ namespace bpl::sys {
         char* cwd =  getcwd(nullptr, 0);
 
         if (nullptr == cwd) {
-            std::cerr << "getcwd failed: " << strerror(errno) << std::endl;
+            ERROR_MSG("getcwd failed: " << strerror(errno));
 
             return {};
         }
@@ -33,24 +35,53 @@ namespace bpl::sys {
         return current_directory;
     } // getCwd
 
-    std::string Path::getResourceFilename(std::string file) {
-        std::list<std::filesystem::path> paths;
-
-        paths.emplace_back(file);
-        paths.emplace_back("/usr/local/share/"+file);
-        paths.emplace_back("/usr/local/share/games/"+file);
-
-        //  Check if its in our current working directory
-        //if (std::filesystem::exists(std::filesystem::exists({file}))) {
-        //    return file;
-        //}
-
+    std::string Path::getFilenameFromList_(const std::list<std::filesystem::path>& paths) {
         for (auto& it : paths) {
             if (std::filesystem::exists(it)) {
+
                 return it.string();
+            }
+            else {
+                DEBUG_MSG("File does not exist: " << it.string());
             }
         }
 
-        return "";
+        return {""};
+    } // getFilenameFromList_
+
+    std::string Path::getFontFilename(const std::string& filename) {
+        std::list<std::filesystem::path> paths;
+
+        if (filename.empty()) {
+            return filename;
+        }
+
+        // If its an absolute path we will not alter it.
+        if (filename[0] == '/') {
+            return filename;
+        }
+
+        paths.emplace_back(filename);
+        paths.emplace_back("resources/fonts/"+filename);
+        paths.emplace_back("/usr/share/fonts/"+filename);
+        paths.emplace_back("/usr/local/share/fonts/"+filename);
+
+        return getFilenameFromList_(paths);
+    } // getFontFilename
+
+    std::string Path::getResourceFilename(const std::string& filename, const std::string& progName) {
+        std::list<std::filesystem::path> paths;
+
+        std::string progPathName = "";
+
+        if (!progName.empty()) {
+            progPathName = progName + "/";
+        }
+
+        paths.emplace_back(filename);
+        paths.emplace_back("resources/"+filename);
+        paths.emplace_back("/usr/local/share/games/"+progPathName+filename);
+
+        return getFilenameFromList_(paths);
     } // getResourceFilename
 } // bpl::sys
