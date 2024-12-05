@@ -9,10 +9,10 @@
 
 //#define __ENABLE_BPL_SYS_DEBUG    1
 
-#define ERROR_MSG(msg)  { std::cerr << __PRETTY_FUNCTION__ << ":" << msg << std::endl; }
+#define ERROR_MSG(msg)  { std::cerr << "ERROR: " << __PRETTY_FUNCTION__ << ":" << msg << std::endl; }
 
 #if defined(__ENABLE_BPL_SYS_DEBUG)
-    #define DEBUG_MSG(msg)  { std::cout << __PRETTY_FUNCTION__ << ":" << msg << std::endl; }
+    #define DEBUG_MSG(msg)  { std::cout << "DEBUG: " << __PRETTY_FUNCTION__ << ":" << msg << std::endl; }
 #else
     #define DEBUG_MSG(cmd)
 #endif // __ENABLE_BPL_SYS_DEBUG
