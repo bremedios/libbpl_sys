@@ -80,6 +80,8 @@ namespace bpl::sys {
 
         paths.emplace_back(filename);
         paths.emplace_back("resources/"+filename);
+        paths.emplace_back("/usr/share/"+progPathName+filename);
+        paths.emplace_back("/usr/share/games/"+progPathName+filename);
         paths.emplace_back("/usr/local/share/"+progPathName+filename);
         paths.emplace_back("/usr/local/share/games/"+progPathName+filename);
 
