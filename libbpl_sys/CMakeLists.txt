@@ -18,7 +18,8 @@ set(SOURCE_FILES src/Battery.cpp
         src/Tick.cpp
         src/Path.cpp
         src/Stopwatch.cpp
-        src/Hardware.cpp)
+        src/Hardware.cpp
+        src/Timer.cpp)
 
 add_library(bpl_sys SHARED ${SOURCE_FILES} ${PUBLIC_HEADER} )
 
