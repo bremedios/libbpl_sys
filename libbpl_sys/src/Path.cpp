@@ -35,7 +35,7 @@ namespace bpl::sys {
         return current_directory;
     } // getCwd
 
-    std::string Path::getFilenameFromList_(const std::list<std::filesystem::path>& paths) {
+    std::string Path::getFilenameFromList(const std::list<std::filesystem::path>& paths) {
         for (auto& it : paths) {
             if (std::filesystem::exists(it)) {
 
@@ -47,7 +47,7 @@ namespace bpl::sys {
         }
 
         return {""};
-    } // getFilenameFromList_
+    } // getFilenameFromList
 
     std::string Path::getFontFilename(const std::string& filename) {
         std::list<std::filesystem::path> paths;
@@ -66,7 +66,7 @@ namespace bpl::sys {
         paths.emplace_back("/usr/share/fonts/"+filename);
         paths.emplace_back("/usr/local/share/fonts/"+filename);
 
-        return getFilenameFromList_(paths);
+        return getFilenameFromList(paths);
     } // getFontFilename
 
     std::string Path::getResourceFilename(const std::string& filename, const std::string& progName) {
@@ -85,6 +85,6 @@ namespace bpl::sys {
         paths.emplace_back("/usr/local/share/"+progPathName+filename);
         paths.emplace_back("/usr/local/share/games/"+progPathName+filename);
 
-        return getFilenameFromList_(paths);
+        return getFilenameFromList(paths);
     } // getResourceFilename
 } // bpl::sys

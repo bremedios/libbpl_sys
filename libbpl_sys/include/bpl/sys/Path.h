@@ -15,8 +15,8 @@ namespace bpl::sys {
         static std::string getCwd();
         static std::string getFontFilename(const std::string& filename);
         static std::string getResourceFilename(const std::string& filename, const std::string& progName="");
+        static std::string getFilenameFromList(const std::list<std::filesystem::path>& paths);
     private:
-        static std::string getFilenameFromList_(const std::list<std::filesystem::path>& paths);
     }; // class Path
 } // bpl::sys
 
