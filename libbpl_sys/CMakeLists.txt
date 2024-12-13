@@ -19,7 +19,8 @@ set(SOURCE_FILES src/Battery.cpp
         src/Path.cpp
         src/Stopwatch.cpp
         src/Hardware.cpp
-        src/Timer.cpp)
+        src/Timer.cpp
+        src/LocalTimePoint.cpp)
 
 add_library(bpl_sys SHARED ${SOURCE_FILES} ${PUBLIC_HEADER} )
 
@@ -31,3 +32,5 @@ install(FILES include/bpl/sys/Path.h DESTINATION include/bpl/sys)
 install(FILES include/bpl/sys/Stopwatch.h DESTINATION include/bpl/sys)
 install(FILES include/bpl/sys/String.h DESTINATION include/bpl/sys)
 install(FILES include/bpl/sys/Hardware.h DESTINATION include/bpl/sys)
+install(FILES include/bpl/sys/Timer.h DESTINATION include/bpl/sys)
+install(FILES include/bpl/sys/LocalTimePoint.h DESTINATION include/bpl/sys)
