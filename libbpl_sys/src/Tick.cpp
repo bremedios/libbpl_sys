@@ -16,16 +16,24 @@ namespace bpl::sys {
         m_tick = std::chrono::steady_clock::now() + m_period;
     } // Reset
 
+    void Tick::Release() {
+        m_cv.notify_all();
+    }
+
     void Tick::Wait() {
-        std::this_thread::sleep_until(m_tick);
+        std::unique_lock<std::mutex> lock(m_mutex);
+
+        m_cv.wait_until(lock, m_tick);
 
         m_tick += m_period;
     } // Wait
 
     void Tick::Wait(std::chrono::milliseconds maxWait) {
+        std::unique_lock<std::mutex> lock(m_mutex);
+
         auto max = std::chrono::steady_clock::now() + maxWait;
 
-        std::this_thread::sleep_until(std::min(m_tick, max));
+        m_cv.wait_until(lock, std::min(m_tick, max));
 
         if (std::chrono::steady_clock::now() > m_tick) {
             m_tick += m_period;

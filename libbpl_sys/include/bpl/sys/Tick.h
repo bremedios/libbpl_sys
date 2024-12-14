@@ -6,6 +6,8 @@
 #define BPL_SYS_TICK_H
 
 #include <chrono>
+#include <condition_variable>
+#include <mutex>
 
 namespace bpl::sys {
 
@@ -13,6 +15,8 @@ namespace bpl::sys {
     public:
         explicit Tick(std::chrono::milliseconds period);
         ~Tick() = default;
+
+        void Release();
 
         void Wait(std::chrono::milliseconds maxWait);
         void Wait(unsigned int maxWait);
@@ -23,6 +27,8 @@ namespace bpl::sys {
         void setPeriod(unsigned int period) { m_period = std::chrono::milliseconds(period); }
         void setPeriod(std::chrono::milliseconds period) { m_period = period; }
     private:
+        std::mutex                                         m_mutex;
+        std::condition_variable                            m_cv;
         std::chrono::time_point<std::chrono::steady_clock> m_tick;
         std::chrono::milliseconds                          m_period = std::chrono::milliseconds(1000);
     }; // class Tick
